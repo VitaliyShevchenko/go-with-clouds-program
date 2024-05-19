@@ -25,7 +25,7 @@ running in Kubernetes in the cloud.
       case-insensitive and checks both the title and description of news items. The system uses a stemming algorithm to
       handle different forms and endings of words.
     * Date Range Filtering: Users can filter news items based on a specified date range.
-    * Source Filtering: Users can specify from which sources to get the news from(out of the predefined list: e.g. BBC,
+    * Source Filtering: Users can specify from which sources to get the news from (out of the predefined list: e.g. BBC,
       ABC).
 4. **Command-Line Interface**
     * Users interact with the application via a command-line interface (CLI).
