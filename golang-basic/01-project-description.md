@@ -8,15 +8,15 @@ The news-aggregator application allows users to collect, filter, and display new
 designed to provide an efficient and customizable way to stay updated with the latest news based on
 user-defined criteria.
 
-First, we're going to implement it as a CLI application. Arguments for execution will be given through a
-command-line interface. Then we will make it a web app and, eventually, transform it into a containerized app running in
-Kubernetes in the cloud.
+First, we're going to implement it in a simplified form as a CLI application. Arguments for execution will be given
+through a command-line interface. Then we will make it a web app and, eventually, transform it into a containerized app
+running in Kubernetes in the cloud.
 
-##### Key Functionalities of news-aggregator CLI application
+##### Key Functionalities of news-aggregator CLI app
 
 1. **News Collection**
-    * Users can collect news from various sources, including RSS feeds and web APIs.
-    * The system supports the addition of new sources dynamically.
+    * Users can collect news from a predefined set of sources, some of them are RSS feeds, the others are html news
+      pages. Take a look at [the attached files](./data/news-sources) and work with them in your app.
 2. **Standardized News Items**
     * The application standardizes the news items collected from different sources, ensuring
       consistency. Each news item includes a title, description, link, and publication date.
@@ -24,53 +24,47 @@ Kubernetes in the cloud.
     * Keyword Filtering: Users can filter news items based on specific keywords. The keyword matching is
       case-insensitive and checks both the title and description of news items. The system uses a stemming algorithm to
       handle different forms and endings of words.
-    * Date Range Filtering: Users can filter news items based on a specified date range. The system handles various date
-      formats and ensures accurate filtering within the defined range.
-4. **Command-Line Interface (CLI)**
-    * Start News Aggregation: Users can start the news aggregation process through a simple command. The system collects
-      news from the defined sources and applies any specified filters.
-    * Apply Filters: Users can apply keyword and date range filters via command-line arguments to refine the collected
-      news items according to their preferences.
-    * Display Filtered News: The application displays the filtered news items in a readable format, showing the title,
-      source link, publication date, and a brief description.
+    * Date Range Filtering: Users can filter news items based on a specified date range.
+    * Source Filtering: Users can specify from which sources to get the news from(out of the predefined list: e.g. BBC,
+      ABC).
+4. **Command-Line Interface**
+    * Users interact with the application via a command-line interface (CLI).
+      The CLI provides a set of arguments to specify filtering criteria and provides help messages for them.
 5. **User Input Handling**
-    * Specify News Sources: Users can define the news sources (e.g., RSS feed URLs, API endpoints) via command-line
-      arguments.
-    * Provide Filtering Criteria: Users can provide keywords and date ranges for filtering news items.
-    * Input Validation: The application validates user inputs and provides clear error messages for invalid entries,
+    * The application validates user inputs and provides clear error messages for invalid entries,
       ensuring a smooth user experience.
 6. **Logging and Error Handling**
     * Logging: The application logs key events and errors during its execution. It helps users to monitor app execution
       and troubleshoot issues.
-    * Error Handling: The system gracefully handles network errors, parsing errors, and other potential issues,
+    * Error Handling: The system gracefully handles parsing errors, and other potential issues,
       providing informative error messages to users.
 
-##### Detailed Description of CLI Commands
+##### Detailed Description of CLI interface
 
-* **help**.
+* **--help**.
 
-Description: Show all available commands and their descriptions.
-Usage: `news-aggregator help`
+Show all available arguments and their descriptions.
 
-* **collect**
+Usage: `news-aggregator --help`
 
-Description: Start the news aggregation process.
-Usage: news-aggregator collect --source <source_url> [--interval <update_interval>]
-Arguments:
---sources: The URL of the news source (e.g., RSS feed URL, API endpoint).
---keyword: (Optional) Time interval for collecting news from the source.
-(User friendly time: 1 day, 4 hours). Default: 1 day.
+* **--sources**
 
-* **get**
+Select the desired news sources to get the news from. Make sure to validate and tell the user about
+[the supported news sources](#how-it-gets-the-news).
 
-Description: Get aggregated news.
-Usage: news-aggregator collect --source <source_url> [--interval <update_interval>]
-Arguments:
---sources: The URLs of the news source: (
-e.g. http://feeds.bbci.co.uk/news/rss.xml, http://rss.cnn.com/rss/edition.rss)
---keyword: (Optional) Keyword to search by. (e.g. tech)
---dates: (Optional) Dates interval of article publication dates, e.g.: 2024-05-15 - 2024-05-17) Default: The current
-date.
+Usage: `news-aggregator --sources=bbc,usatoday`
+
+* **--keywords**
+
+Specify the keywords to filter the news by.
+
+Usage: `news-aggregator --keywords=Ukraine,China`
+
+* **--date-start** (**--date-end**)
+
+Specify the date range to filter the news by according to some predefined well-known format of your choice.
+
+Usage: `news-aggregator --date-start=2024-18-05 --date-end=2024-19-05`
 
 ##### Output Format
 
@@ -91,14 +85,34 @@ Description: The Go team is proud to release Go 1.18, which includes significant
 Link: https://golang.org/doc/go1.18
 ```
 
+Add line breaks between news items for better readability.
+
 #### How It Gets the News
 
-The first iteration of the product collects the news from local rss.xml files.
+The first iteration of the app collects the news from [local rss and html files](./data/news-sources).
+The RSS files have .xml extension. As RSS is standardized format of data, you'll have no problems with it.
+You might spend more time on investigating the html file and mapping the data you need to the news item fields.
 
-The next iteration supports the following:
+The news sources where the files were downloaded from are:
 
-- Collecting News from RSS Feeds: It fetches the feed from the provided URL and extracts the news items.
-- Collecting News from APIs: The application makes HTTP GET requests to the specified API endpoints and parses the JSON
-  response to extract news items.
-- Dynamic Source Addition: Users can add new news sources by providing the source URL as a command-line argument. The
-  application handles RSS and API sources dynamically.
+* https://www.bbc.co.uk
+* http://abcnews.go.com
+* https://www.usatoday.com
+* https://www.washingtontimes.com
+
+Use the libs of your choice for parsing RSS and HTML.
+
+#### Extensibility Instructions
+
+When implementing the app consider the extensibility aspect.
+We need to be able to easily read from different news sources and of different types (RSS, html, json).
+We start with local RSS feed and HTML files but later will transform into data retrieved via HTTP calls.
+When structuring the code in packages, take into account that we will distribute the application in two forms:
+as a CLI app and as a web app (HTTP/HTTPS server).
+
+#### Future Improvements
+
+The next iteration of the application will be adjusted to accept the rss feed URLs and make http requests to get the
+data. This way the rss news sources will transform from a predefined list of sources to a dynamically supplied list.
+Also, we will add ability to read html news pages directly from some websites. Probably, we will try to fetch news from
+some social nets API.
