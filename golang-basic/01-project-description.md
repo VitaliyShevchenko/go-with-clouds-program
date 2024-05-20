@@ -1,8 +1,6 @@
-## Project description
+## News Aggregator Project
 
-### News Aggregator
-
-#### Overview
+### Overview
 
 The news-aggregator application allows users to collect, filter, and display news from various sources. This tool is
 designed to provide an efficient and customizable way to stay updated with the latest news based on
@@ -12,7 +10,7 @@ First, we're going to implement it in a simplified form as a CLI application. Ar
 through a command-line interface. Then we will make it a web app and, eventually, transform it into a containerized app
 running in Kubernetes in the cloud.
 
-##### Key Functionalities of news-aggregator CLI app
+### Key Functionalities of news-aggregator CLI app
 
 1. **News Collection**
     * Users can collect news from a predefined set of sources, some of them are RSS feeds, the others are html news
@@ -39,7 +37,7 @@ running in Kubernetes in the cloud.
     * Error Handling: The system gracefully handles parsing errors, and other potential issues,
       providing informative error messages to users.
 
-##### Detailed Description of CLI interface
+### Detailed Description of CLI interface
 
 * **--help**.
 
@@ -66,7 +64,7 @@ Specify the date range to filter the news by according to some predefined well-k
 
 Usage: `news-aggregator --date-start=2024-18-05 --date-end=2024-19-05`
 
-##### Output Format
+### Output Format
 
 The application displays the filtered news items in the following format:
 
@@ -87,7 +85,7 @@ Link: https://golang.org/doc/go1.18
 
 Add line breaks between news items for better readability.
 
-#### How It Gets the News
+### How It Gets the News
 
 The first iteration of the app collects the news from [local rss and html files](./data/news-sources).
 The RSS files have .xml extension. As RSS is standardized format of data, you'll have no problems with it.
@@ -102,7 +100,7 @@ The news sources where the files were downloaded from are:
 
 Use the libs of your choice for parsing RSS and HTML.
 
-#### Extensibility Instructions
+### Extensibility Instructions
 
 When implementing the app consider the extensibility aspect.
 We need to be able to easily read from different news sources and of different types (RSS, html, json).
@@ -110,7 +108,7 @@ We start with local RSS feed and HTML files but later will transform into data r
 When structuring the code in packages, take into account that we will distribute the application in two forms:
 as a CLI app and as a web app (HTTP/HTTPS server).
 
-#### Future Improvements
+### Future Improvements
 
 The next iteration of the application will be adjusted to accept the rss feed URLs and make http requests to get the
 data. This way the rss news sources will transform from a predefined list of sources to a dynamically supplied list.
