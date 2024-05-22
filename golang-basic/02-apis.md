@@ -33,8 +33,11 @@ Here you can put all opened questions or things you need to clear with other fol
 ```
 
 ### Lecture Notes
+Presentation:
+https://docs.google.com/presentation/d/1uaXX4BGXFbBAg1zz9K3M5t6dOcXWCLNm/edit?usp=sharing&ouid=104154946265606394823&rtpof=true&sd=true
 
-TBD
+Recording:
+https://drive.google.com/file/d/1TmBlSYepoiZaOkEwgIst7v_0JPiA_SM9/view?usp=sharing
 
 #### Something to read
 * [How to design a good API](http://www.cs.bc.edu/~muller/teaching/cs102/s06/lib/pdf/api-design) — must read
