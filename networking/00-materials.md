@@ -1,7 +1,3 @@
-## Lecture notes
-TBD
-
-
 ## Must read books and topics
 * "Network Programming with Go: Code Secure and Reliable Network Services from Scratch" — a book to deep dive in Networking and Go
 * [OSI model](https://levelup.gitconnected.com/functions-of-networking-system-osi-model-e596705f0f6c)
