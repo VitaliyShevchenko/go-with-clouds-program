@@ -1,4 +1,4 @@
-### HTTP server + REST API)
+### HTTP server + REST API
 
 Build a simple HTTP server for the news-aggregator project.
 
