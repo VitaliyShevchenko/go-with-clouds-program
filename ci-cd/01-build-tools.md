@@ -11,7 +11,14 @@ Go through the following materials and get familiar with the build tools for a G
 
 ### Tasks: introduce build tools to your project
 
-- Introduce Taskfiles to your project (go, docker, generation, etc.)
+- Introduce Taskfiles to your project
+  - Create tasks for
+    - Testing/building go source code
+    - Running `go fmt`, `go vet` and linting if used
+    - Running `go mod tidy`
+    - Building docker image
+    - Running the project locally
+    - Running code generators for mocks, if applicable
   - Make sure that used filepaths are valid on a linux machine (needed later for CI), some functions for this are available [here](https://taskfile.dev/reference/templating/#task-functions).
 - Introduce devbox to your project, build your project from devbox.
   - For windows users, try out devbox in [WSL](https://learn.microsoft.com/en-us/windows/wsl/).
