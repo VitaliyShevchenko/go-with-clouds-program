@@ -46,6 +46,7 @@ status:
 Define a CRD, which allows to create hot news based on available `Feeds` and current functionality of the news-aggregator.
 
 ```yaml
+apiVersion: teamdev.com/v1
 kind: HotNews
 metadata:
   # name of the crd
