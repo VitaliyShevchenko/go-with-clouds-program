@@ -6,6 +6,7 @@ scalable, and reliable.
 In the scope of this task, you need to store all docker images and helm charts in **private ECR**.
 
 This task will require below updates:
+
 1. Create ECR repos in your region using creds which were given to you.
 2. Update `Taskfile` to be able to push images/charts to ECR.
 3. Update GithubActions to trigger `Taskfile` tasks.
@@ -13,6 +14,7 @@ This task will require below updates:
 5. Update all k8s deployments to use the secret to pull images from ECR.
 
 ### Useful links
-* https://aws.amazon.com/ecr/
-* https://skryvets.com/blog/2021/03/15/kubernetes-pull-image-from-private-ecr-registry/
-* https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions
+
+* [ECR](https://aws.amazon.com/ecr/)
+* [Pull images from private ECR](https://skryvets.com/blog/2021/03/15/kubernetes-pull-image-from-private-ecr-registry/)
+* [Using Secrets in GitHub Actions](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
