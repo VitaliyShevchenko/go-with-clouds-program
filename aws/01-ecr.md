@@ -11,3 +11,8 @@ This task will require below updates:
 3. Update GithubActions to trigger `Taskfile` tasks.
 4. Create a k8s `CronJob` which will create a k8s `Secret` with credentials to ECR.
 5. Update all k8s deployments to use the secret to pull images from ECR.
+
+### Useful links
+* https://aws.amazon.com/ecr/
+* https://skryvets.com/blog/2021/03/15/kubernetes-pull-image-from-private-ecr-registry/
+* https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions
